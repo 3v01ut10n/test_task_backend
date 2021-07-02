@@ -40,3 +40,13 @@ def get_structure(link=None, tags=None):
         return tag_counter
     except requests.exceptions.ConnectionError:
         return {"status": "Connection error!"}
+
+
+def structure_checker(data):
+    actual_structure = get_structure(link=data.get("link"))
+    structure_to_check = data.get("structure")
+
+    if actual_structure == structure_to_check:
+        return {"is_correct": True}
+    else:
+        return {"is_correct": False}

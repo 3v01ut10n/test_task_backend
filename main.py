@@ -35,10 +35,11 @@ def structure():
             return {"status": "Fail"}
 
 
-@app.route("/check_structure", methods=["POST"])  # TODO: Пункт 4
+@app.route("/check_structure", methods=["POST"])
 def check_structure():
     if request.method == "POST":
-        pass
+        data = request.get_json()
+        return structure_checker(data)
 
 
 if __name__ == "__main__":
