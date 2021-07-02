@@ -3,7 +3,6 @@ from flask import Flask, request
 from modules.code_manager import *
 from modules.structure import *
 
-
 app = Flask(__name__)
 
 
@@ -24,7 +23,14 @@ def login():
 @app.route("/structure", methods=["GET"])
 def structure():
     if request.method == "GET":
-        return get_structure_default()
+        link = request.args.get("link")
+        tags = request.args.get("tags")
+        if link is None and tags is None:
+            return get_structure()
+        elif link is not None and tags is None:
+            return get_structure(link=link)
+        else:
+            return {"status": "Fail"}
 
 
 @app.route("/check_structure", methods=["POST"])  # TODO: Пункт 4

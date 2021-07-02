@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET",
@@ -9,11 +10,18 @@ headers = {
 }
 
 
-def get_structure_default():
-    """Получение структуры для сайта freestylo.ru"""
+def get_structure(link=None, tags=None):
+    """
+    Получение структуры для сайта.
+    Без указания URL, запрашивается структура для freestylo.ru
+    """
     url = "https://freestylo.ru/"
+
+    if link is not None:
+        url = link
+
     req = requests.get(url, headers)
-    soup = BeautifulSoup(req.content, 'html.parser')
+    soup = BeautifulSoup(req.content, 'html.parser')  # TODO: Для получения вложенной структуры переделать поиск.
     tags = [tag.name for tag in soup.find_all()]  # TODO: Оптимизация с созданием счётчика и записью сразу в него.
     tag_counter = {}
 
