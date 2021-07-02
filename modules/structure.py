@@ -49,4 +49,18 @@ def structure_checker(data):
     if actual_structure == structure_to_check:
         return {"is_correct": True}
     else:
-        return {"is_correct": False}
+        return {"is_correct": False, "difference": get_diff_structure(actual_structure, structure_to_check)}
+
+
+def get_diff_structure(actual_structure, structure_to_check):
+    diff = {}
+
+    for tag in actual_structure:
+        if structure_to_check.get(tag) is not None:
+            count = abs(int(actual_structure[tag]) - int(structure_to_check[tag]))
+            if count >= 1:
+                diff[tag] = count
+        else:
+            diff[tag] = actual_structure[tag]
+
+    return diff
