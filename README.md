@@ -5,7 +5,7 @@
 ### В проекте используется
 Python 3.8<br>
 Flask<br>
-Requests
+Requests<br>
 BeautifulSoup4
 
 ### Установка
