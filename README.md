@@ -6,6 +6,7 @@
 Python 3.8<br>
 Flask<br>
 Requests
+BeautifulSoup4
 
 ### Установка
 1. Склонировать репозиторий
