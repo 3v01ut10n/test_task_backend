@@ -23,7 +23,12 @@ def get_structure(link=None, tags=None):
 
         req = requests.get(url, headers)
         soup = BeautifulSoup(req.content, 'html.parser')  # TODO: Для получения вложенной структуры переделать поиск.
-        tags = [tag.name for tag in soup.find_all()]  # TODO: Оптимизация с созданием счётчика и записью сразу в него.
+
+        if tags is None:
+            tags = [tag.name for tag in soup.find_all()]  # TODO: Сразу выполнять подсчёт.
+        else:
+            tags = tags.split(",")  # Из строки запроса переделываем в список.
+
         tag_counter = {}
 
         for tag in set(tags):  # Создаём словарь для подсчёта тэгов.

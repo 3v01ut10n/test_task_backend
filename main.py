@@ -29,6 +29,8 @@ def structure():
             return get_structure()
         elif link is not None and tags is None:
             return get_structure(link=link)
+        elif link is not None and tags is not None:
+            return get_structure(link=link, tags=tags)
         else:
             return {"status": "Fail"}
 
