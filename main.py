@@ -1,6 +1,7 @@
 from flask import Flask, request
 
-from modules.utils import *
+from modules.code_manager import *
+from modules.structure import *
 
 
 app = Flask(__name__)
@@ -18,6 +19,18 @@ def login():
     elif request.method == "POST":
         data = request.get_json()
         return check_code(data, CODES)
+
+
+@app.route("/structure", methods=["GET"])
+def structure():
+    if request.method == "GET":
+        return get_structure_default()
+
+
+@app.route("/check_structure", methods=["POST"])  # TODO: Пункт 4
+def check_structure():
+    if request.method == "POST":
+        pass
 
 
 if __name__ == "__main__":
